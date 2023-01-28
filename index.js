@@ -1,17 +1,11 @@
 const shell = require('shelljs');
-const http = require('http');
 const request = require('request');
 const hostname = '127.0.0.1';
 const port = 9988;
 const baseUrl = '';
 
-const server = http.createServer((req, res) => {
-    res.statusCode = 200;
-    res.setHeader('Content-Type', 'text/plain');
-    res.end('Hello World');
-});
-
 function getJsonData(){
+    console.log('Checking for new IPs...: ' + new Date().toString());
     request(baseUrl + 'public/secret/ips.json', function (error, response, body) {
         if (!error && response.statusCode === 200) {
             const ips = JSON.parse(body);
@@ -45,6 +39,6 @@ function unBan(ip){
     console.log('--------');
 }
 
-server.listen(port, hostname, () => {
+setInterval(function (){
     getJsonData();
-});
+}, 1000);
