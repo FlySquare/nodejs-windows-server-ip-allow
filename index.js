@@ -1,7 +1,5 @@
 const shell = require('shelljs');
 const request = require('request');
-const hostname = '127.0.0.1';
-const port = 9988;
 const baseUrl = '';
 
 function getJsonData(){
